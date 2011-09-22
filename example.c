@@ -5,7 +5,7 @@
 int main() {
 	qc_init();
 
-	printf("Bool: %d\n", gen_bool());
+	printf("Char: %c\n", gen_char());
 
 	return 0;
 }
