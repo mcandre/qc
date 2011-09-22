@@ -5,7 +5,7 @@
 int main() {
 	qc_init();
 
-	printf("Char: %c\n", gen_char());
+	printf("String: %s\n", gen_string());
 
 	return 0;
 }

@@ -1,8 +1,10 @@
 #include "qc.h"
+#include <gc.h>
 #include <stdlib.h>
 #include <stdio.h>
 
 void qc_init() {
+	GC_INIT();
 	srand((unsigned int) time(NULL));
 }
 
@@ -19,9 +21,13 @@ char gen_char() {
 }
 
 char* gen_string() {
-	char* s;
+	int i, len = gen_int() % 100;
 
-	// ...
+	char* s = (char*) GC_MALLOC(len * sizeof(char));
+
+	for (i = 0; i < len; i++) {
+		s[i] = gen_char();
+	}
 
 	return s;
 }
