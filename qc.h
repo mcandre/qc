@@ -17,11 +17,11 @@ typedef void (*fp)(void*);
 
 void qc_init();
 
-void gen_bool(void* d);
-void gen_int(void* d);
-void gen_char(void* d);
-void* gen_array(fp gen, size_t size);
-void gen_string(void* d);
+void gen_bool(void* data);
+void gen_int(void* data);
+void gen_char(void* data);
+void gen_array(void* array, fp gen, int len, size_t size);
+void gen_string(void* data);
 
 // void for_all(fp property, ...);
 

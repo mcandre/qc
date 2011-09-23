@@ -10,40 +10,41 @@ void qc_init() {
 	srand((unsigned int) time(NULL));
 }
 
-void gen_bool(void* d) {
+void gen_bool(void* data) {
 	bool b = rand() % 2 == 0;
 
-	(* (bool*) d) = b;
+	(* (bool*) data) = b;
 }
 
-void gen_int(void* d) {
+void gen_int(void* data) {
 	int i = rand();
 
-	(* (int*) d) = i;
+	(* (int*) data) = i;
 }
 
-void gen_char(void* d) {
+void gen_char(void* data) {
 	char c = (char) (rand() % 128);
 
-	(* (char*) d) = c;
+	(* (char*) data) = c;
 }
 
-void* gen_array(fp gen, size_t size) {
-	int i, len = rand() % 100;
-
-	void* arr = GC_MALLOC(len * size);
-
+void gen_array(void* array, fp gen, int len, size_t size) {
+	int i;
 	for (i = 0; i < len; i++) {
-		gen(arr + i * size);
+		gen(array + i * size);
 	}
-
-	return arr;
 }
 
-void gen_string(void* d) {
-	char* str = (char*) gen_array((fp) gen_char, sizeof(char));
+void gen_string(void* data) {
+	int len = rand() % 100;
 
-	(* (char**) d) = str;
+	size_t size = sizeof(char);
+
+	char* str = (char*) GC_MALLOC(len * size);
+
+	gen_array(str, (fp) gen_char, len, sizeof(char));
+
+	(* (char**) data) = str;
 }
 
 // Syntax:
