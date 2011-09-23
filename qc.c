@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-// #include <stdarg.h>
 
 void qc_init() {
 	GC_INIT();
