@@ -47,20 +47,38 @@ void gen_string(void* data) {
 	(* (char**) data) = str;
 }
 
-// Syntax:
-//
-// for_all(property, gen1, print1, gen2, print2, ...);
+void print_int(void* data) {
+	int i = (* (int*) data);
 
-// void for_all(fp property, ...) {
-// 	va_list ap1, ap2;
-// 	int i;
-// 
-// 	va_copy(ap2, ap1);
-// 
-// 	if (property(property, ap2)) {
-// 		printf("+++ OK, passed 100 tests.\n");
-// 	}
-// 	else {
-// 		printf("*** Failed!\n");
-// 	}
-// }
+	printf("%d", i);
+}
+
+void for_all(property prop, int arglen, fp* generators, fp* printers, size_t max_size) {
+	int i, j;
+	for (i = 0; i < 1/*00*/; i++) {
+		void* values = GC_MALLOC(arglen * max_size);
+
+		for (j = 0; j < arglen; j++) {
+			generators[j](values + j * max_size);
+		}
+
+		printf("Values:\n");
+
+		for (j = 0; j < arglen; j++) {
+			printers[j](values + j * max_size);
+			printf("\n");
+		}
+
+		// ...
+
+		// if (prop(prop, ap2)) {
+		// 	printf("+++ OK, passed 100 tests.\n");
+		// }
+		// else {
+		// 	printf("*** Failed!\n");
+		// 
+		// 	// ...
+		// 	break;
+		// }
+	}
+}
