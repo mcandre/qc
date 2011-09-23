@@ -13,7 +13,7 @@ typedef int bool;
 	#define false 0
 #endif
 
-typedef void (*fp)(void);
+typedef void (*fp)();
 
 void qc_init();
 

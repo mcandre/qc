@@ -23,10 +23,10 @@ char gen_char() {
 void* gen_array(fp gen, size_t size) {
 	int i, len = gen_int() % 100;
 
-	void* arr = GC_MALLOC(len * size);
+	void* arr = (int*) GC_MALLOC(len * size);
 
 	for (i = 0; i < len; i++) {
-		arr[i] = gen();
+		*(arr + size * i) = gen();
 	}
 
 	return arr;
