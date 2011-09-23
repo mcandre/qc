@@ -10,19 +10,19 @@ void gen_odd(void *data) {
 		i++;
 	}
 
-	(* (int*) data) = i;
+	qc_return(int, i);
 }
 
-bool is_odd(void *args) {
-	int n = (* (int*) args);
+bool is_odd(void *data) {
+	int n = qc_args(int, 0, sizeof(int));
 
 	return n % 2 == 1;
 }
 
-bool both_less_than(void *args) {
-	int a = (* (int*) args);
-	int b = (* (int*) (args + sizeof(int)));
-	int c = (* (int*) (args + 2 * sizeof(int)));
+bool both_less_than(void *data) {
+	int a = qc_args(int, 0, sizeof(int));
+	int b = qc_args(int, 1, sizeof(int));
+	int c = qc_args(int, 2, sizeof(int));
 
 	return a < c && b < c;
 }
@@ -35,7 +35,7 @@ void gen_digit_char(void *data) {
 
 	char c = '0' + (char) i;
 
-	(* (char*) data) = c;
+	qc_return(char, c);
 }
 
 void gen_digit(void *data) {
@@ -44,12 +44,12 @@ void gen_digit(void *data) {
 
 	i %= 10;
 
-	(* (int*) data) = i;
+	qc_return(int, i);
 }
 
-bool does_not_parse_to(void *args) {
-	char c = (* (char*) args);
-	int i = (* (int*) (args + sizeof(int)));
+bool does_not_parse_to(void *data) {
+	char c = qc_args(char, 0, sizeof(int));
+	int i = qc_args(int, 1, sizeof(int));
 
 	return (c - '0') != i;
 }
@@ -62,25 +62,25 @@ int main() {
 	fp ps[] = { print_int };
 
 	// Are all odd numbers odd?
-	for_all((prop) is_odd, 1, gs, ps, sizeof(int));
+	for_all(is_odd, 1, gs, ps, sizeof(int));
 
 	fp gs2[] = { gen_int };
 	fp ps2[] = { print_int };
 
 	// Are all integers odd?
-	for_all((prop) is_odd, 1, gs2, ps2, sizeof(int));
+	for_all(is_odd, 1, gs2, ps2, sizeof(int));
 
 	fp gs3[] = { gen_int, gen_int, gen_int };
 	fp ps3[] = { print_int, print_int, print_int };
 
 	// Are any two integers less than a third integer?
-	for_all((prop) both_less_than, 3, gs3, ps3, sizeof(int));
+	for_all(both_less_than, 3, gs3, ps3, sizeof(int));
 
 	fp gs4[] = { gen_digit_char, gen_digit };
 	fp ps4[] = { print_char, print_int };
 
 	// Do any characters parse to a matching integer?
-	for_all((prop) does_not_parse_to, 2, gs4, ps4, sizeof(int));
+	for_all(does_not_parse_to, 2, gs4, ps4, sizeof(int));
 
 	return 0;
 }

@@ -12,19 +12,19 @@ void qc_init() {
 void gen_bool(void* data) {
 	bool b = rand() % 2 == 0;
 
-	(* (bool*) data) = b;
+	qc_return(bool, b);
 }
 
 void gen_int(void* data) {
 	int i = rand();
 
-	(* (int*) data) = i;
+	qc_return(int, i);
 }
 
 void gen_char(void* data) {
 	char c = (char) (rand() % 128);
 
-	(* (char*) data) = c;
+	qc_return(char, c);
 }
 
 void gen_array(void* data, fp gen, int len, size_t size) {
@@ -43,7 +43,7 @@ void gen_string(void* data) {
 
 	gen_array(s, (fp) gen_char, len, size);
 
-	(* (char**) data) = s;
+	qc_return(char*, s);
 }
 
 void print_bool(void* data) {
@@ -58,24 +58,24 @@ void print_bool(void* data) {
 }
 
 void print_int(void* data) {
-	int i = (* (int*) data);
+	int i = qc_args(int, 0, sizeof(int));
 
 	printf("%d", i);
 }
 
 void print_char(void* data) {
-	char c = (* (char*) data);
+	char c = qc_args(char, 0, sizeof(char));
 
 	printf("\'%c\'", c);
 }
 
 void print_string(void* data) {
-	char* s = (* (char**) data);
+	char* s = qc_args(char*, 0, sizeof(char));
 
 	printf("%s", s);
 }
 
-void for_all(prop property, int arglen, fp generators[], fp printers[], size_t max_size) {
+void _for_all(prop property, int arglen, fp generators[], fp printers[], size_t max_size) {
 	int i, j;
 
 	void* values = GC_MALLOC(arglen * max_size);
