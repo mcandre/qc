@@ -14,7 +14,7 @@ typedef int bool;
 #endif
 
 typedef void (*fp)(void*);
-typedef bool (*property)(void*);
+typedef bool (*prop)(void*);
 
 void qc_init();
 
@@ -26,6 +26,6 @@ void gen_string(void* data);
 
 void print_int(void* data);
 
-void for_all(property prop, int arglen, fp generators[], fp printers[], size_t max_size);
+void for_all(prop property, int arglen, fp generators[], fp printers[], size_t max_size);
 
 #endif

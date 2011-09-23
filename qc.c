@@ -53,33 +53,29 @@ void print_int(void* data) {
 	printf("%d", i);
 }
 
-void for_all(property prop, int arglen, fp generators[], fp printers[], size_t max_size) {
+void for_all(prop property, int arglen, fp generators[], fp printers[], size_t max_size) {
 	int i, j;
 
 	void* values = GC_MALLOC(arglen * max_size);
 
-	for (i = 0; i < 1/*00*/; i++) {
+	for (i = 0; i < 100; i++) {
 		for (j = 0; j < arglen; j++) {
 			generators[j](values + j * max_size);
 		}
 
-		printf("Values:\n");
+		bool holds = property(values);
 
-		for (j = 0; j < arglen; j++) {
-			printers[j](values + j * max_size);
-			printf("\n");
+		if (!holds) {
+			printf("*** Failed!\n");
+		
+			for (j = 0; j < arglen; j++) {
+				printers[j](values + j * max_size);
+				printf("\n");
+			}
+
+			return;
 		}
-
-		// ...
-
-		// if (prop(prop, ap2)) {
-		// 	printf("+++ OK, passed 100 tests.\n");
-		// }
-		// else {
-		// 	printf("*** Failed!\n");
-		// 
-		// 	// ...
-		// 	break;
-		// }
 	}
+
+	printf("+++ OK, passed 100 tests.\n");
 }

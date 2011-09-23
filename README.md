@@ -9,7 +9,6 @@ EXAMPLE
 	$ make
 	gcc -o example example.c qc.c qc.h -lgc -Wall
 	./example
-	Random bool: 1
-	Random int: 1958514439
-	Random char: q
-	Random string: l/@
+	+++ OK, passed 100 tests.
+	*** Failed!
+	800737128
