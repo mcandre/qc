@@ -39,17 +39,40 @@ void gen_string(void* data) {
 
 	size_t size = sizeof(char);
 
-	char* str = (char*) GC_MALLOC(len * size);
+	char* s = (char*) GC_MALLOC(len * size);
 
-	gen_array(str, (fp) gen_char, len, size);
+	gen_array(s, (fp) gen_char, len, size);
 
-	(* (char**) data) = str;
+	(* (char**) data) = s;
+}
+
+void print_bool(void* data) {
+	bool b = (* (bool*) data);
+
+	if (b) {
+		printf("true");
+	}
+	else {
+		printf("false");
+	}
 }
 
 void print_int(void* data) {
 	int i = (* (int*) data);
 
 	printf("%d", i);
+}
+
+void print_char(void* data) {
+	char c = (* (char*) data);
+
+	printf("\'%c\'", c);
+}
+
+void print_string(void* data) {
+	char* s = (* (char**) data);
+
+	printf("%s", s);
 }
 
 void for_all(prop property, int arglen, fp generators[], fp printers[], size_t max_size) {

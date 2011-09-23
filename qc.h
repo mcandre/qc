@@ -24,7 +24,10 @@ void gen_char(void* data);
 void gen_array(void* data, fp gen, int len, size_t size);
 void gen_string(void* data);
 
+void print_bool(void* data);
 void print_int(void* data);
+void print_char(void* data);
+void print_string(void* data);
 
 void for_all(prop property, int arglen, fp generators[], fp printers[], size_t max_size);
 
