@@ -55,9 +55,10 @@ void print_int(void* data) {
 
 void for_all(property prop, int arglen, fp generators[], fp printers[], size_t max_size) {
 	int i, j;
-	for (i = 0; i < 1/*00*/; i++) {
-		void* values = GC_MALLOC(arglen * max_size);
 
+	void* values = GC_MALLOC(arglen * max_size);
+
+	for (i = 0; i < 1/*00*/; i++) {
 		for (j = 0; j < arglen; j++) {
 			generators[j](values + j * max_size);
 		}
