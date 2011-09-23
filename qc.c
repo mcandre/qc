@@ -42,7 +42,7 @@ void gen_string(void* data) {
 
 	char* str = (char*) GC_MALLOC(len * size);
 
-	gen_array(str, (fp) gen_char, len, sizeof(char));
+	gen_array(str, (fp) gen_char, len, size);
 
 	(* (char**) data) = str;
 }
