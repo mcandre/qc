@@ -20,18 +20,26 @@ char gen_char() {
 	return (char) (gen_int() % 128);
 }
 
-char* gen_string() {
+void* gen_array(fp gen, size_t size) {
 	int i, len = gen_int() % 100;
 
-	char* s = (char*) GC_MALLOC(len * sizeof(char));
+	void* arr = GC_MALLOC(len * size);
 
 	for (i = 0; i < len; i++) {
-		s[i] = gen_char();
+		arr[i] = gen();
 	}
 
-	return s;
+	return arr;
 }
 
-void for_all() {
-	// ...
+char* gen_string() {
+	return gen_array((fp) gen_char, sizeof(char));
 }
+
+// // Syntax:
+// //
+// // for_all(property, gen1, print1, gen2, print2, ...);
+// 
+// void for_all(void *property, ...) {
+// 	// ...
+// }
