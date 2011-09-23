@@ -33,7 +33,7 @@ void* gen_array(fp gen, size_t size) {
 }
 
 char* gen_string() {
-	return gen_array((fp) gen_char, sizeof(char));
+	return (char*) gen_array((fp) gen_char, sizeof(char));
 }
 
 // // Syntax:
