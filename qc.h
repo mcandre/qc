@@ -1,6 +1,8 @@
 #ifndef QC
 #define QC
 
+#include <stdlib.h>
+
 typedef int bool;
 
 #ifndef true
