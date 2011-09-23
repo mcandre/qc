@@ -1,5 +1,4 @@
 #include "qc.h"
-#include <gc.h>
 #include <stdlib.h>
 #include <stdio.h>
 
