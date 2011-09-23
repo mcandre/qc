@@ -11,4 +11,8 @@ EXAMPLE
 	./example
 	+++ OK, passed 100 tests.
 	*** Failed!
-	800737128
+	1814368998
+	*** Failed!
+	1979445633
+	1873578154
+	675318317
