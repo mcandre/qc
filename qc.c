@@ -2,44 +2,64 @@
 #include <gc.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
+// #include <stdarg.h>
 
 void qc_init() {
 	GC_INIT();
 	srand((unsigned int) time(NULL));
 }
 
-bool gen_bool() {
-	return rand() % 2 == 0;
+void gen_bool(void* d) {
+	bool b = rand() % 2 == 0;
+
+	(* (bool*) d) = b;
 }
 
-int gen_int() {
-	return rand();
+void gen_int(void* d) {
+	int i = rand();
+
+	(* (int*) d) = i;
 }
 
-char gen_char() {
-	return (char) (gen_int() % 128);
+void gen_char(void* d) {
+	char c = (char) (rand() % 128);
+
+	(* (char*) d) = c;
 }
 
 void* gen_array(fp gen, size_t size) {
-	int i, len = gen_int() % 100;
+	int i, len = rand() % 100;
 
-	void* arr = (void*) GC_MALLOC(len * size);
+	void* arr = GC_MALLOC(len * size);
 
 	for (i = 0; i < len; i++) {
-		arr[i] = gen();
+		gen(arr + i * size);
 	}
 
 	return arr;
 }
 
-char* gen_string() {
-	return (char*) gen_array((fp) gen_char, sizeof(char));
+void gen_string(void* d) {
+	char* str = (char*) gen_array((fp) gen_char, sizeof(char));
+
+	(* (char**) d) = str;
 }
 
-// // Syntax:
-// //
-// // for_all(property, gen1, print1, gen2, print2, ...);
+// Syntax:
+//
+// for_all(property, gen1, print1, gen2, print2, ...);
+
+// void for_all(fp property, ...) {
+// 	va_list ap1, ap2;
+// 	int i;
 // 
-// void for_all(void *property, ...) {
-// 	// ...
+// 	va_copy(ap2, ap1);
+// 
+// 	if (property(property, ap2)) {
+// 		printf("+++ OK, passed 100 tests.\n");
+// 	}
+// 	else {
+// 		printf("*** Failed!\n");
+// 	}
 // }
