@@ -53,7 +53,7 @@ void print_int(void* data) {
 	printf("%d", i);
 }
 
-void for_all(property prop, int arglen, fp* generators, fp* printers, size_t max_size) {
+void for_all(property prop, int arglen, fp generators[], fp printers[], size_t max_size) {
 	int i, j;
 	for (i = 0; i < 1/*00*/; i++) {
 		void* values = GC_MALLOC(arglen * max_size);

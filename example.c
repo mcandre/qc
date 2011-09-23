@@ -30,11 +30,9 @@ int main() {
 	// 
 	// printf("Random string: %s\n", random_string);
 
-	fp* gs = (fp*) GC_MALLOC(sizeof(fp));
-	gs[0] = gen_int;
+	fp gs[] = { gen_int };
 	
-	fp* ps = (fp*) GC_MALLOC(sizeof(fp));
-	ps[0] = print_int;
+	fp ps[] = { print_int };
 	
 	for_all((property) is_odd, 1, gs, ps, sizeof(int));
 
