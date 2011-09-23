@@ -26,7 +26,7 @@ void* gen_array(fp gen, size_t size) {
 	void* arr = (int*) GC_MALLOC(len * size);
 
 	for (i = 0; i < len; i++) {
-		*(arr + size * i) = gen();
+		arr[i] = gen();
 	}
 
 	return arr;
