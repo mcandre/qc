@@ -28,10 +28,10 @@ void gen_char(void* data) {
 	(* (char*) data) = c;
 }
 
-void gen_array(void* array, fp gen, int len, size_t size) {
+void gen_array(void* data, fp gen, int len, size_t size) {
 	int i;
 	for (i = 0; i < len; i++) {
-		gen(array + i * size);
+		gen(data + i * size);
 	}
 }
 
