@@ -8,7 +8,7 @@ EXAMPLE
 
 	$ make
 	gcc -o example example.c qc.c qc.h -lgc -Wall
-	wonko:qc andrew$ ./example 
+	$ ./example 
 	+++ OK, passed 100 tests.
 	*** Failed!
 	453045430
