@@ -1,4 +1,6 @@
 #include "qc.h"
+#include <gc.h>
+#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -54,6 +56,12 @@ bool does_not_parse_to(void *data) {
 	return (c - '0') != i;
 }
 
+bool does_not_have_an_h(void *data) {
+	char* s = qc_args(char*, 0, sizeof(char*));
+
+	return strchr(s, 'h') == NULL;
+}
+
 int main() {
 	qc_init();
 
@@ -81,6 +89,12 @@ int main() {
 
 	// Do any characters parse to a matching integer?
 	for_all(does_not_parse_to, 2, gs4, ps4, sizeof(int));
+
+	fp gs5[] = { gen_string };
+	fp ps5[] = { print_string };
+
+	// Do any string pairs match?
+	for_all(does_not_have_an_h, 1, gs5, ps5, sizeof(char*));
 
 	return 0;
 }

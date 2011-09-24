@@ -8,14 +8,16 @@ EXAMPLE
 
 	$ make
 	gcc -o example example.c qc.c qc.h -lgc -Wall
-	./example
+	wonko:qc andrew$ ./example 
 	+++ OK, passed 100 tests.
 	*** Failed!
-	506830150
+	453045430
 	*** Failed!
-	1374187048
-	1922575898
-	1694164924
+	1505013395
+	1697735399
+	223633304
 	*** Failed!
-	'8'
-	8
+	'4'
+	4
+	*** Failed!
+	ff<GC"z<z #9_zN	1.>w`Uhl~M~; >FTWjt{qQ+0Iek~

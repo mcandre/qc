@@ -24,7 +24,11 @@ void qc_init();
 void gen_bool(void* data);
 void gen_int(void* data);
 void gen_char(void* data);
-void gen_array(void* data, fp gen, int len, size_t size);
+
+void _gen_array(void* data, fp gen, int len, size_t size);
+
+#define gen_array(data, gen, len, size) (_gen_array(data, (fp) gen, len, size))
+
 void gen_string(void* data);
 
 void print_bool(void* data);

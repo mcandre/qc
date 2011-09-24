@@ -27,7 +27,7 @@ void gen_char(void* data) {
 	qc_return(char, c);
 }
 
-void gen_array(void* data, fp gen, int len, size_t size) {
+void _gen_array(void* data, fp gen, int len, size_t size) {
 	int i;
 	for (i = 0; i < len; i++) {
 		gen(data + i * size);
@@ -41,7 +41,7 @@ void gen_string(void* data) {
 
 	char* s = (char*) GC_MALLOC(len * size);
 
-	gen_array(s, (fp) gen_char, len, size);
+	gen_array(s, gen_char, len, size);
 
 	qc_return(char*, s);
 }
@@ -70,7 +70,7 @@ void print_char(void* data) {
 }
 
 void print_string(void* data) {
-	char* s = qc_args(char*, 0, sizeof(char));
+	char* s = qc_args(char*, 0, sizeof(char*));
 
 	printf("%s", s);
 }
