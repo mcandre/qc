@@ -16,6 +16,8 @@ typedef int bool;
 typedef void (*fp)(void*);
 typedef bool (*prop)(void*);
 
+bool QC_INITIALIZED;
+
 void qc_init();
 
 #define qc_return(type, value) ((* (type*) data) = value)

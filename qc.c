@@ -7,6 +7,8 @@
 void qc_init() {
 	GC_INIT();
 	srand((unsigned int) time(NULL));
+
+	QC_INITIALIZED = true;
 }
 
 void gen_bool(void* data) {
@@ -77,6 +79,12 @@ void print_string(void* data) {
 
 void _for_all(prop property, int arglen, fp generators[], fp printers[], size_t max_size) {
 	int i, j;
+
+	// Because GC_MALLOC will segfault if GC_INIT() is not called beforehand.
+	if (!QC_INITIALIZED) {
+		printf("*** Error: Run qc_init() before calling for_all().\n");
+		return;
+	}
 
 	void* values = GC_MALLOC(arglen * max_size);
 
