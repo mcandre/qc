@@ -22,13 +22,13 @@ void qc_init();
 
 typedef void* blob;
 
-void gen_bool(blob data);
-void gen_int(blob data);
-void gen_char(blob data);
-
 typedef void (*gen)(blob);
 typedef void (*print)(blob);
 typedef bool (*prop)(blob);
+
+void gen_bool(blob data);
+void gen_int(blob data);
+void gen_char(blob data);
 
 void _gen_array(blob data, gen g, size_t size);
 
