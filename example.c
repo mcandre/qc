@@ -65,33 +65,33 @@ bool does_not_have_an_h(void *data) {
 int main() {
 	qc_init();
 
-	fp gs[] = { gen_odd };
+	gen gs[] = { gen_odd };
 
-	fp ps[] = { print_int };
+	print ps[] = { print_int };
 
 	// Are all odd numbers odd?
 	for_all(is_odd, 1, gs, ps, sizeof(int));
 
-	fp gs2[] = { gen_int };
-	fp ps2[] = { print_int };
+	gen gs2[] = { gen_int };
+	print ps2[] = { print_int };
 
 	// Are all integers odd?
 	for_all(is_odd, 1, gs2, ps2, sizeof(int));
 
-	fp gs3[] = { gen_int, gen_int, gen_int };
-	fp ps3[] = { print_int, print_int, print_int };
+	gen gs3[] = { gen_int, gen_int, gen_int };
+	print ps3[] = { print_int, print_int, print_int };
 
 	// Are any two integers less than a third integer?
 	for_all(both_less_than, 3, gs3, ps3, sizeof(int));
 
-	fp gs4[] = { gen_digit_char, gen_digit };
-	fp ps4[] = { print_char, print_int };
+	gen gs4[] = { gen_digit_char, gen_digit };
+	print ps4[] = { print_char, print_int };
 
 	// Do any characters parse to a matching integer?
 	for_all(does_not_parse_to, 2, gs4, ps4, sizeof(int));
 
-	fp gs5[] = { gen_string };
-	fp ps5[] = { print_string };
+	gen gs5[] = { gen_string };
+	print ps5[] = { print_string };
 
 	// Do any string pairs match?
 	for_all(does_not_have_an_h, 1, gs5, ps5, sizeof(char*));

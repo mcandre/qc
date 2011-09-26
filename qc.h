@@ -13,9 +13,6 @@ typedef int bool;
 	#define false 0
 #endif
 
-typedef void (*fp)(void*);
-typedef bool (*prop)(void*);
-
 bool QC_INITIALIZED;
 
 void qc_init();
@@ -23,23 +20,29 @@ void qc_init();
 #define qc_return(type, value) ((* (type*) data) = value)
 #define qc_args(type, n, max_size) ((* (type*) (data + n * max_size)))
 
-void gen_bool(void* data);
-void gen_int(void* data);
-void gen_char(void* data);
+typedef void* blob;
 
-void _gen_array(void* data, fp gen, int len, size_t size);
+void gen_bool(blob data);
+void gen_int(blob data);
+void gen_char(blob data);
 
-#define gen_array(data, gen, len, size) (_gen_array(data, (fp) gen, len, size))
+typedef void (*gen)(blob);
+typedef void (*print)(blob);
+typedef bool (*prop)(blob);
 
-void gen_string(void* data);
+void _gen_array(blob data, gen g, int len, size_t size);
 
-void print_bool(void* data);
-void print_int(void* data);
-void print_char(void* data);
-void print_string(void* data);
+#define gen_array(data, g, len, size) (_gen_array(data, (gen) g, len, size))
 
-void _for_all(prop property, int arglen, fp generators[], fp printers[], size_t max_size);
+void gen_string(blob data);
 
-#define for_all(property, arglen, generators, printers, max_size) (_for_all((prop) property, arglen, generators, printers, max_size))
+void print_bool(blob data);
+void print_int(blob data);
+void print_char(blob data);
+void print_string(blob data);
+
+void _for_all(prop property, int arglen, gen gs[], print ps[], size_t max_size);
+
+#define for_all(property, arglen, gs, ps, max_size) (_for_all((prop) property, arglen, gs, ps, max_size))
 
 #endif

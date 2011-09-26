@@ -11,32 +11,32 @@ void qc_init() {
 	QC_INITIALIZED = true;
 }
 
-void gen_bool(void* data) {
+void gen_bool(blob data) {
 	bool b = rand() % 2 == 0;
 
 	qc_return(bool, b);
 }
 
-void gen_int(void* data) {
+void gen_int(blob data) {
 	int i = rand();
 
 	qc_return(int, i);
 }
 
-void gen_char(void* data) {
+void gen_char(blob data) {
 	char c = (char) (rand() % 128);
 
 	qc_return(char, c);
 }
 
-void _gen_array(void* data, fp gen, int len, size_t size) {
+void _gen_array(blob data, gen g, int len, size_t size) {
 	int i;
 	for (i = 0; i < len; i++) {
-		gen(data + i * size);
+		g(data + i * size);
 	}
 }
 
-void gen_string(void* data) {
+void gen_string(blob data) {
 	int len = rand() % 100;
 
 	size_t size = sizeof(char);
@@ -48,7 +48,7 @@ void gen_string(void* data) {
 	qc_return(char*, s);
 }
 
-void print_bool(void* data) {
+void print_bool(blob data) {
 	bool b = (* (bool*) data);
 
 	if (b) {
@@ -59,19 +59,19 @@ void print_bool(void* data) {
 	}
 }
 
-void print_int(void* data) {
+void print_int(blob data) {
 	int i = qc_args(int, 0, sizeof(int));
 
 	printf("%d", i);
 }
 
-void print_char(void* data) {
+void print_char(blob data) {
 	char c = qc_args(char, 0, sizeof(char));
 
 	printf("\'%c\'", c);
 }
 
-void print_string(void* data) {
+void print_string(blob data) {
 	char* s = qc_args(char*, 0, sizeof(char*));
 
 	printf("%s", s);
@@ -111,7 +111,7 @@ void print_string(void* data) {
 // property functions (e.g. cmp(int, int)) may have multiple arguments, and
 // therefore require multiple generators.
 //
-// fp gs[] = { gen_int };
+// gen gs[] = { gen_int };
 //
 // When a test case fails, the values for which the property returns false will be
 // printed. For each generator, a corresponding printer function is necessary.
@@ -121,7 +121,7 @@ void print_string(void* data) {
 // such as trees, graphs, and linked lists require the framework user to write
 // custom printer functions, but the syntax remains the same.
 // 
-// fp ps[] = { print_int };
+// print ps[] = { print_int };
 //
 // Finally, for_all requires the maximum byte size of the types to be passed to the
 // property function. This information helps for_all hold all test values in a single array,
@@ -129,7 +129,7 @@ void print_string(void* data) {
 //
 // for_all(is_odd, 1, gs, ps, sizeof(int));
 
-void _for_all(prop property, int arglen, fp generators[], fp printers[], size_t max_size) {
+void _for_all(prop property, int arglen, gen gs[], print ps[], size_t max_size) {
 	int i, j;
 
 	// Because GC_MALLOC will segfault if GC_INIT() is not called beforehand.
@@ -138,11 +138,11 @@ void _for_all(prop property, int arglen, fp generators[], fp printers[], size_t 
 		return;
 	}
 
-	void* values = GC_MALLOC(arglen * max_size);
+	blob values = GC_MALLOC(arglen * max_size);
 
 	for (i = 0; i < 100; i++) {
 		for (j = 0; j < arglen; j++) {
-			generators[j](values + j * max_size);
+			gs[j](values + j * max_size);
 		}
 
 		bool holds = property(values);
@@ -151,7 +151,7 @@ void _for_all(prop property, int arglen, fp generators[], fp printers[], size_t 
 			printf("*** Failed!\n");
 		
 			for (j = 0; j < arglen; j++) {
-				printers[j](values + j * max_size);
+				ps[j](values + j * max_size);
 				printf("\n");
 			}
 
