@@ -53,12 +53,7 @@ void gen_string(blob data) {
 void print_bool(blob data) {
 	bool b = (* (bool*) data);
 
-	if (b) {
-		printf("true");
-	}
-	else {
-		printf("false");
-	}
+	printf("%s", b ? "true" : "false");
 }
 
 void print_int(blob data) {
