@@ -78,7 +78,7 @@ void print_string(blob data) {
 }
 
 void _for_all(prop property, int arglen, gen gs[], print ps[], size_t max_size) {
-	int i, j;
+	int i, j, k;
 
 	// Because GC_MALLOC will segfault if GC_INIT() is not called beforehand.
 	if (!QC_INITIALIZED) {
@@ -86,25 +86,25 @@ void _for_all(prop property, int arglen, gen gs[], print ps[], size_t max_size) 
 		return;
 	}
 
-	blob* values = GC_MALLOC(arglen * max_size);
+	blob* test_case = GC_MALLOC(arglen * max_size);
 
-	for (i = 0; i < 100; i++) {
+	for (i = 0; i < 1/*00*/; i++) {
 		for (j = 0; j < arglen; j++) {
-			*(values + j * max_size) = gs[j]();
+			*(test_case + j * max_size) = gs[j]();
 		}
 
-		bool holds = property(values);
+		bool holds = property(test_case);
 
-		if (!holds) {
+		// if (!holds) {
 			printf("*** Failed!\n");
 		
-			for (j = 0; j < arglen; j++) {
-				ps[j](values + j * max_size);
+			for (k = 0; k < arglen; k++) {
+				ps[k](test_case + k * max_size);
 				printf("\n");
 			}
 
 			return;
-		}
+		// }
 	}
 
 	printf("+++ OK, passed 100 tests.\n");
