@@ -29,21 +29,25 @@ void gen_char(blob data) {
 	qc_return(char, c);
 }
 
-void _gen_array(blob data, gen g, int len, size_t size) {
+void _gen_array(blob data, gen g, size_t size) {
+	int len = rand() % 100;
+
+	blob arr = GC_MALLOC(len * size);
+
 	int i;
 	for (i = 0; i < len; i++) {
-		g(data + i * size);
+		g(arr + i * size);
 	}
+
+	qc_return(blob, arr);
 }
 
 void gen_string(blob data) {
-	int len = rand() % 100;
+	// size_t size = sizeof(char);
 
-	size_t size = sizeof(char);
+	char* s;
 
-	char* s = (char*) GC_MALLOC(len * size);
-
-	gen_array(s, gen_char, len, char);
+	gen_array(&s, gen_char, char);
 
 	qc_return(char*, s);
 }
