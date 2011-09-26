@@ -43,8 +43,6 @@ void _gen_array(blob data, gen g, size_t size) {
 }
 
 void gen_string(blob data) {
-	// size_t size = sizeof(char);
-
 	char* s;
 
 	gen_array(&s, gen_char, char);
