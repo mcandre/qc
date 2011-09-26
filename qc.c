@@ -51,7 +51,7 @@ void gen_string(blob data) {
 }
 
 void print_bool(blob data) {
-	bool b = (* (bool*) data);
+	bool b = qc_args(bool, 0, bool);
 
 	printf("%s", b ? "true" : "false");
 }
