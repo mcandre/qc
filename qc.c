@@ -137,12 +137,14 @@ void _for_all(prop property, int arglen, gen gs[], print ps[], size_t max_size) 
 
 	blob values = GC_MALLOC(arglen * max_size);
 
+	bool holds;
+
 	for (i = 0; i < 100; i++) {
 		for (j = 0; j < arglen; j++) {
 			gs[j](values + j * max_size);
 		}
 
-		bool holds = property(values);
+		holds = property(values);
 
 		if (!holds) {
 			printf("*** Failed!\n");
