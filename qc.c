@@ -57,19 +57,19 @@ void print_bool(blob data) {
 }
 
 void print_int(blob data) {
-	int i = qc_args(int, 0, sizeof(int));
+	int i = qc_args(int, 0, int);
 
 	printf("%d", i);
 }
 
 void print_char(blob data) {
-	char c = qc_args(char, 0, sizeof(char));
+	char c = qc_args(char, 0, char);
 
 	printf("\'%c\'", c);
 }
 
 void print_string(blob data) {
-	char* s = qc_args(char*, 0, sizeof(char*));
+	char* s = qc_args(char*, 0, char*);
 
 	printf("%s", s);
 }
@@ -89,7 +89,7 @@ void print_string(blob data) {
 // protocol, qc_args,  to pass test values to the property function.
 //
 // bool is_odd(void *data) {
-//    int n = qc_args(int, 0, sizeof(int));
+//    int n = qc_args(int, 0, int);
 //
 //    return n % 2 == 1;
 // }
@@ -124,7 +124,7 @@ void print_string(blob data) {
 // property function. This information helps for_all hold all test values in a single array,
 // which it passes to the test property.
 //
-// for_all(is_odd, 1, gs, ps, sizeof(int));
+// for_all(is_odd, 1, gs, ps, int);
 
 void _for_all(prop property, int arglen, gen gs[], print ps[], size_t max_size) {
 	int i, j;
