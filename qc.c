@@ -43,7 +43,7 @@ void gen_string(blob data) {
 
 	char* s = (char*) GC_MALLOC(len * size);
 
-	gen_array(s, gen_char, len, size);
+	gen_array(s, gen_char, len, char);
 
 	qc_return(char*, s);
 }

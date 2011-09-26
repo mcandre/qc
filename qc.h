@@ -32,7 +32,7 @@ typedef bool (*prop)(blob);
 
 void _gen_array(blob data, gen g, int len, size_t size);
 
-#define gen_array(data, g, len, size) (_gen_array(data, (gen) g, len, size))
+#define gen_array(data, g, len, class) (_gen_array(data, (gen) g, len, sizeof(class)))
 
 void gen_string(blob data);
 
