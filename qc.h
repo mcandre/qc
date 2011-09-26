@@ -17,24 +17,24 @@ bool QC_INITIALIZED;
 
 void qc_init();
 
-// #define qc_return(type, value) ((* (type*) data) = value)
+#define qc_return(type, value) ((* (type*) data) = value)
 #define qc_args(type, n, max_class) ((* (type*) (data + n * sizeof(max_class))))
 
 typedef void* blob;
 
-typedef blob (*gen)();
+typedef void (*gen)(blob);
 typedef void (*print)(blob);
 typedef bool (*prop)(blob);
 
-bool gen_bool();
-int gen_int();
-char gen_char();
+void gen_bool(blob data);
+void gen_int(blob data);
+void gen_char(blob data);
 
-blob* _gen_array(gen g, size_t size);
+void _gen_array(blob data, gen g, size_t size);
 
-#define gen_array(g, class) (_gen_array((gen) g, sizeof(class)))
+#define gen_array(data, g, class) (_gen_array(data, (gen) g, sizeof(class)))
 
-char* gen_string();
+void gen_string(blob data);
 
 void print_bool(blob data);
 void print_int(blob data);
