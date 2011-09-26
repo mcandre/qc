@@ -83,12 +83,12 @@ void print_string(blob data) {
 // Every for_all call begins with a property function. For example, is_odd takes
 // an int and returns a bool.
 //
-// bool is_odd(void *data);
+// bool is_odd(blob data);
 //
 // In order to handle arbitrarily-typed property functions, qc uses a special
 // protocol, qc_args,  to pass test values to the property function.
 //
-// bool is_odd(void *data) {
+// bool is_odd(blob data) {
 //    int n = qc_args(int, 0, int);
 //
 //    return n % 2 == 1;
