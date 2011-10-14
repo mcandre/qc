@@ -1,5 +1,9 @@
 qc - A C port of the QuickCheck unit test framework
 
+HOMEPAGE
+
+[http://www.yellosoft.us/quickcheck](http://www.yellosoft.us/quickcheck)
+
 REQUIREMENTS
 
  - [BoehmGC](http://www.hpl.hp.com/personal/Hans_Boehm/gc/)
