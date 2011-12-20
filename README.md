@@ -1,14 +1,14 @@
-qc - A C port of the QuickCheck unit test framework
+# qc - A C port of the QuickCheck unit test framework
 
-HOMEPAGE
+## HOMEPAGE
 
 [http://www.yellosoft.us/quickcheck](http://www.yellosoft.us/quickcheck)
 
-REQUIREMENTS
+## REQUIREMENTS
 
  - [BoehmGC](http://www.hpl.hp.com/personal/Hans_Boehm/gc/)
 
-EXAMPLE
+## EXAMPLE
 
 	$ make
 	gcc -o example example.c qc.c qc.h -lgc -Wall
