@@ -6,12 +6,17 @@
 
 ## REQUIREMENTS
 
+### Ubuntu
+
+ - libgc
+
+### Mac OS X, Windows
+
  - [BoehmGC](http://www.hpl.hp.com/personal/Hans_Boehm/gc/)
 
 ## EXAMPLE
 
 	$ make
-	gcc -o example example.c qc.c qc.h -lgc -Wall
 	$ ./example 
 	+++ OK, passed 100 tests.
 	*** Failed!
