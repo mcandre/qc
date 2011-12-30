@@ -8,7 +8,7 @@
 
 ### Ubuntu
 
- - libgc
+ - libgc-dev
 
 ### Mac OS X, Windows
 
