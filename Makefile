@@ -12,4 +12,5 @@ lint:
 	splint *.c *.h
 
 clean:
+	-rm *.exe
 	-rm example
