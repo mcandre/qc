@@ -6,7 +6,7 @@ test: example
 	./example
 
 example: example.c qc.c qc.h
-	$(CC) -O2 -Wall -o example example.c qc.c qc.h -lgc
+	$(CC) -O2 -Wall -Wextra -o example example.c qc.c qc.h -lgc
 
 lint:
 	splint *.c *.h
