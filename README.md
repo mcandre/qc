@@ -10,9 +10,15 @@
 
  - libgc-dev
 
-## Mac OS X, Windows
+## Windows
 
  - [BoehmGC](http://www.hpl.hp.com/personal/Hans_Boehm/gc/)
+
+## Mac OS X
+
+Install BoehmGC with [Homebrew](http://brew.sh/):
+
+    $ brew install boehmgc
 
 # EXAMPLE
 
