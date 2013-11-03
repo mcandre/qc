@@ -6,7 +6,7 @@ test: example
 	./example
 
 example: example.c qc.c qc.h
-	$(CC) -o example -O2 example.c qc.c qc.h -I/usr/include/gc -lgc -Wall
+	$(CC) -O2 -Wall -o example example.c qc.c qc.h -I/usr/include/gc -lgc
 
 lint:
 	splint *.c *.h
