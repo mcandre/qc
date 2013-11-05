@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-extern bool QC_INITIALIZED;
-
 void qc_init(void);
 
 #define qc_return(type, value) ((* (type*) data) = value)
@@ -17,15 +15,15 @@ typedef void (*gen)(blob);
 typedef void (*print)(blob);
 typedef bool (*prop)(blob);
 
-void gen_bool(blob data);
-void gen_int(blob data);
-void gen_char(blob data);
+void gen_bool(/*@out@*/ blob data);
+void gen_int(/*@out@*/ blob data);
+void gen_char(/*@out@*/ blob data);
 
-void _gen_array(blob data, gen g, size_t size);
+void _gen_array(/*@out@*/ blob data, gen g, size_t size);
 
 #define gen_array(data, g, class) (_gen_array(data, (gen) g, sizeof(class)))
 
-void gen_string(blob data);
+void gen_string(/*@out@*/ blob data);
 
 void print_bool(blob data);
 void print_int(blob data);

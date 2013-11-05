@@ -10,7 +10,7 @@ example: example.c qc.c qc.h
 	$(CC) $(FLAGS) -o example example.c qc.c -lgc
 
 lint:
-	splint *.c *.h -preproc
+	splint *.c *.h
 
 clean:
 	-rm *.exe
