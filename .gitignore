@@ -1,2 +1,4 @@
 *.exe
+Gemfile.lock
+tmp/
 example
