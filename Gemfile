@@ -1,5 +1,7 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
 group :development do
-  gem "churn"
+  gem 'guard'
+  gem 'guard-shell'
+  gem 'churn'
 end
