@@ -6,7 +6,7 @@ all: test
 test: example
 	./example
 
-example: example.c qc.c qc.h
+example: example.c example.h qc.c qc.h
 	$(CC) $(FLAGS) -o example example.c qc.c -lgc
 
 lint:

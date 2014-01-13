@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "example.h"
 
-void gen_odd(blob data) {
+void gen_odd(blob const data) {
   int i;
   gen_int(&i);
 
@@ -16,13 +16,13 @@ void gen_odd(blob data) {
   qc_return(int, i);
 }
 
-bool is_odd(blob data) {
+bool is_odd(blob const data) {
   int n = qc_args(int, 0, int);
 
   return n % 2 == 1;
 }
 
-bool both_less_than(blob data) {
+bool both_less_than(blob const data) {
   int a = qc_args(int, 0, int);
   int b = qc_args(int, 1, int);
   int c = qc_args(int, 2, int);
@@ -30,7 +30,7 @@ bool both_less_than(blob data) {
   return a < c && b < c;
 }
 
-void gen_digit_char(blob data) {
+void gen_digit_char(blob const data) {
   int i;
   char c;
 
@@ -43,7 +43,7 @@ void gen_digit_char(blob data) {
   qc_return(char, c);
 }
 
-void gen_digit(blob data) {
+void gen_digit(blob const data) {
   int i;
   gen_int(&i);
 
@@ -52,7 +52,7 @@ void gen_digit(blob data) {
   qc_return(int, i);
 }
 
-bool does_not_parse_to(blob data) {
+bool does_not_parse_to(blob const data) {
   char c;
   int i;
 
@@ -62,7 +62,7 @@ bool does_not_parse_to(blob data) {
   return (c - '0') != (char) i;
 }
 
-bool does_not_have_an_h(blob data) {
+bool does_not_have_an_h(blob const data) {
   char* s = qc_args(char*, 0, char*);
 
   return strchr(s, 'h') == NULL;
