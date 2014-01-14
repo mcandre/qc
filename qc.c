@@ -128,7 +128,7 @@ void print_string(blob const data) {
 //
 // for_all(is_odd, 1, gs, ps, int);
 
-void _for_all(
+bool _for_all(
   prop const property,
   size_t const arglen,
   gen const gs[],
@@ -142,7 +142,7 @@ void _for_all(
   // Because GC_MALLOC will segfault if GC_INIT() is not called beforehand.
   if (!QC_INITIALIZED) {
     printf("*** Error: Run qc_init() before calling for_all().\n");
-    return;
+    return false;
   }
 
   values = GC_MALLOC(arglen * max_size);
@@ -162,9 +162,11 @@ void _for_all(
         printf("\n");
       }
 
-      return;
+      return false;
     }
   }
 
   printf("+++ OK, passed 100 tests.\n");
+
+  return true;
 }

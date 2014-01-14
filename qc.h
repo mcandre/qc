@@ -30,7 +30,7 @@ void print_int(blob const data);
 void print_char(blob const data);
 void print_string(blob const data);
 
-void _for_all(prop const property, size_t const arglen, gen const gs[], print const ps[], size_t const max_size);
+bool _for_all(prop const property, size_t const arglen, gen const gs[], print const ps[], size_t const max_size);
 
 #define for_all(property, arglen, gs, ps, max_class) (_for_all((prop) property, arglen, gs, ps, sizeof(max_class)))
 
