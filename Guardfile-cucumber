@@ -1,0 +1,10 @@
+guard :shell do
+  watch(/.*\.(rb|feature|c|h)/) do |m|
+    title = 'Cucumber'
+    msg = `cucumber 2>&1`
+    status = ($?.success? && :success) || :failed
+
+    n msg, title, status
+    "-> #{msg}"
+  end
+end
