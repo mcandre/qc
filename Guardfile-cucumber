@@ -1,5 +1,5 @@
 guard :shell do
-  watch(/.*\.(rb|feature|c|h)/) do |m|
+  watch(/^.*\.(rb|feature|c|h)$/) do |m|
     title = 'Cucumber'
     eager 'cucumber 2>&1'
     status = ($?.success? && :success) || :failed
