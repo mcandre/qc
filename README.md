@@ -49,6 +49,9 @@ Example: `brew install boehmgc`
 
 ## Optional
 
+* [splint](http://www.splint.org/)
+* [vera++](https://bitbucket.org/verateam/vera/wiki/Home)
+
 * [Ruby](https://www.ruby-lang.org/) 2+
 * [Bundler](http://bundler.io/)
 * [Cucumber](http://cukes.info/)

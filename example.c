@@ -1,3 +1,5 @@
+// Copyright (C) YelloSoft
+
 #include "qc.h"
 #include <gc.h>
 #include <string.h>

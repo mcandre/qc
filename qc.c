@@ -1,3 +1,5 @@
+// Copyright (C) YelloSoft
+
 #include <gc.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -119,7 +121,7 @@ void print_string(blob const data) {
 // specify printer functions for each generator function. More complicated types,
 // such as trees, graphs, and linked lists require the framework user to write
 // custom printer functions, but the syntax remains the same.
-// 
+//
 // print ps[] = { print_int };
 //
 // Finally, for_all requires the maximum byte size of the types to be passed to the
@@ -156,7 +158,7 @@ bool _for_all(
 
     if (!holds) {
       printf("*** Failed!\n");
-    
+
       for (j = 0; j < arglen; j++) {
         ps[j](values + j * max_size);
         printf("\n");
