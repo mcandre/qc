@@ -1,13 +1,15 @@
 CC=clang
 FLAGS=-O2 -Wall -Wextra -Wmost -Weverything -Wno-pointer-arith
 
+BIN=example
+
 all: test
 
-test: example
-	./example
+test: $(BIN)
+	./$(BIN)
 
-example: example.c example.h qc.c qc.h
-	$(CC) $(FLAGS) -o example example.c qc.c -lgc
+$(BIN): example.c example.h qc.c qc.h
+	$(CC) $(FLAGS) -o $(BIN) example.c qc.c -lgc
 
 splint:
 	find . -type f -name '*.c' -exec splint {} \;
@@ -20,6 +22,9 @@ vera++:
 
 lint: splint vera++
 
+valgrind: $(BIN)
+	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
+
 clean:
 	-rm *.exe
-	-rm example
+	-rm $(BIN)
