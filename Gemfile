@@ -6,4 +6,5 @@ group :development do
   gem 'rspec'
   gem 'cucumber'
   gem 'churn'
+  gem 'aspelllint'
 end
