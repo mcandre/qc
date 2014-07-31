@@ -12,13 +12,10 @@ $(BIN): example.c example.h qc.c qc.h
 	$(CC) $(FLAGS) -o $(BIN) example.c qc.c -lgc
 
 splint:
-	find . -type f -name '*.c' -exec splint {} \;
-	find . -type f -name '*.h' -exec splint {} \;
+	find . -type f -name '*.[ch]' -exec splint {} \;
 
 vera++:
-	find . -type f -name '*.cpp' -exec vera++ -s {} \;
-	find . -type f -name '*.c' -exec vera++ -s {} \;
-	find . -type f -name '*.h' -exec vera++ -s {} \;
+	find . -type f -name '*.cpp' -o -name '*.[ch]' -exec vera++ -s {} \;
 
 lint: splint vera++
 
