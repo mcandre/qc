@@ -49,6 +49,7 @@ Example: `brew install boehmgc`
 
 ## Optional
 
+* [cppcheck](http://cppcheck.sourceforge.net/)
 * [splint](http://www.splint.org/)
 * [vera++](https://bitbucket.org/verateam/vera/wiki/Home)
 * [valgrind](http://www.valgrind.org/)
