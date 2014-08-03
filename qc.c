@@ -139,7 +139,6 @@ bool _for_all(
 ) {
   size_t i, j;
   blob values;
-  bool holds;
 
   // Because GC_MALLOC will segfault if GC_INIT() is not called beforehand.
   if (!QC_INITIALIZED) {
@@ -154,7 +153,7 @@ bool _for_all(
       gs[j](values + j * max_size);
     }
 
-    holds = property(values);
+    bool holds = property(values);
 
     if (!holds) {
       printf("*** Failed!\n");
