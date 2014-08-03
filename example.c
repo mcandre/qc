@@ -18,6 +18,12 @@ void gen_odd(blob const data) {
   qc_return(int, i);
 }
 
+bool xors_self_to_false(blob const data) {
+  bool b = qc_args(bool, 0, bool);
+
+  return (b ^ b) == false;
+}
+
 bool is_odd(blob const data) {
   int n = qc_args(int, 0, int);
 
@@ -71,6 +77,9 @@ bool does_not_have_an_h(blob const data) {
 }
 
 int main() {
+  gen gs0[] = { gen_bool };
+  print ps0[] = { print_bool };
+
   gen gs[] = { gen_odd };
   print ps[] = { print_int };
 
@@ -87,6 +96,9 @@ int main() {
   print ps5[] = { print_string };
 
   qc_init();
+
+  // Do all booleans XOR themselves to false?
+  for_all(xors_self_to_false, 1, gs0, ps0, bool);
 
   // Are all odd numbers odd?
   for_all(is_odd, 1, gs, ps, int);
