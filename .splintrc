@@ -1,0 +1,8 @@
++warning-stream-stdout
++skip-sys-headers
++skip-posix-headers
+-preproc
+-exportlocal
+-unrecog
+-type
+-mustdefine
