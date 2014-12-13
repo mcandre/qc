@@ -2,25 +2,27 @@
 
 # EXAMPLE
 
-    $ make
-    clang -O2 -Wall -Wextra -Wmost -Weverything -Wno-pointer-arith -o example example.c qc.c -lgc
-    ./example
-    +++ OK, passed 100 tests.
-    *** Failed!
-    1200315752
-    *** Failed!
-    1909203817
-    287898845
-    435231224
-    *** Failed!
-    '9'
-    9
-    *** Failed!
-    T9^/NeP)Y^k/"-V$DSJ"U/.$vT<ih(|
+```
+$ make
+clang -O2 -Wall -Wextra -Wmost -Weverything -Wno-pointer-arith -o example example.c qc.c -lgc
+./example
++++ OK, passed 100 tests.
+*** Failed!
+1200315752
+*** Failed!
+1909203817
+287898845
+435231224
+*** Failed!
+'9'
+9
+*** Failed!
+T9^/NeP)Y^k/"-V$DSJ"U/.$vT<ih(|
+```
 
 # HOMEPAGE
 
-[http://www.yellosoft.us/quickcheck](http://www.yellosoft.us/quickcheck)
+http://www.yellosoft.us/quickcheck
 
 # LICENSE
 
@@ -66,34 +68,42 @@ Example: `brew install boehmgc`
 
 Ensure the example script works as expected:
 
-    $ bundle
-    $ cucumber
-    Feature: Run example tests
+```
+$ bundle
+$ cucumber
+Feature: Run example tests
 
-      Scenario: Running example tests            # features/run_example_tests.feature:3
-        Given the program has finished           # features/step_definitions/steps.rb:1
-        Then the output is correct for each test # features/step_definitions/steps.rb:7
+  Scenario: Running example tests            # features/run_example_tests.feature:3
+    Given the program has finished           # features/step_definitions/steps.rb:1
+    Then the output is correct for each test # features/step_definitions/steps.rb:7
 
-    1 scenario (1 passed)
-    2 steps (2 passed)
-    0m0.091s
+1 scenario (1 passed)
+2 steps (2 passed)
+0m0.091s
+```
 
 ## Grind
 
 Eliminate memory leaks:
 
-    $ make valgrind
-    ...
+```
+$ make valgrind
+...
+```
 
 ## Spell Check
 
-    $ aspelllint
-    ...
+```
+$ aspelllint
+...
+```
 
 ## Local CI
 
 Guard can automatically run testing when the code changes:
 
-    $ bundle
-    $ guard -G Guardfile-cucumber
-    ...
+```
+$ bundle
+$ guard -G Guardfile-cucumber
+...
+```
