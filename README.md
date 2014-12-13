@@ -20,6 +20,8 @@ clang -O2 -Wall -Wextra -Wmost -Weverything -Wno-pointer-arith -o example exampl
 T9^/NeP)Y^k/"-V$DSJ"U/.$vT<ih(|
 ```
 
+See [example.c](https://github.com/mcandre/qc/blob/master/example.c) for more information.
+
 # HOMEPAGE
 
 http://www.yellosoft.us/quickcheck
