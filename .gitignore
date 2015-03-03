@@ -3,3 +3,4 @@ bin/
 *.dSYM/
 Gemfile.lock
 tmp/
+node_modules/

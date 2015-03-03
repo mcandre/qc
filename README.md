@@ -1,4 +1,4 @@
-# qc - A C port of the QuickCheck unit test framework
+# qc - a C port of the QuickCheck unit test framework
 
 # EXAMPLE
 
