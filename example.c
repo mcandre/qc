@@ -71,7 +71,7 @@ bool does_not_parse_to(blob const data) {
 }
 
 bool does_not_have_an_h(blob const data) {
-  char* s = qc_args(char*, 0, char*);
+  char *s = qc_args(char *, 0, char *);
 
   return strchr(s, 'h') == NULL;
 }
@@ -113,7 +113,7 @@ int main() {
   for_all(does_not_parse_to, 2, gs4, ps4, int);
 
   // Do any string pairs match?
-  for_all(does_not_have_an_h, 1, gs5, ps5, char*);
+  for_all(does_not_have_an_h, 1, gs5, ps5, char *);
 
   return 0;
 }

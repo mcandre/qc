@@ -28,7 +28,7 @@ void gen_int(/*@out@*/ blob const data) {
 }
 
 void gen_char(/*@out@*/ blob const data) {
-  char c = (char) (rand() % 128);
+  char c = (char)(rand() % 128);
 
   qc_return(char, c);
 }
@@ -39,6 +39,7 @@ void _gen_array(/*@out@*/ blob const data, gen const g, size_t const size) {
   blob arr = GC_MALLOC((size_t) len * size);
 
   size_t i;
+
   for (i = 0; i < (size_t) len; i++) {
     g(arr + i * size);
   }
@@ -47,11 +48,11 @@ void _gen_array(/*@out@*/ blob const data, gen const g, size_t const size) {
 }
 
 void gen_string(/*@out@*/ blob const data) {
-  char* s;
+  char *s;
 
   gen_array(&s, gen_char, char);
 
-  qc_return(char*, s);
+  qc_return(char *, s);
 }
 
 void print_bool(blob const data) {
@@ -73,7 +74,7 @@ void print_char(blob const data) {
 }
 
 void print_string(blob const data) {
-  char* s = qc_args(char*, 0, char*);
+  char *s = qc_args(char *, 0, char *);
 
   printf("%s", s);
 }
