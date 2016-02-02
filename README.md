@@ -34,6 +34,10 @@ FreeBSD
 
 * [clang](http://clang.llvm.org/), such as from [Xcode](https://developer.apple.com/xcode/)
 
+## Optional
+
+* [Python](https://www.python.org/) 2+ (for infer)
+
 ## Ubuntu
 
 * [libgc-dev](http://packages.ubuntu.com/search?keywords=libgc-dev&searchon=names)
