@@ -7,6 +7,12 @@
 #include <stdio.h>
 #include "example.h"
 
+bool xors_self_to_false(blob const data) {
+  bool b = qc_args(bool, 0, bool);
+
+  return (b ^ b) == false;
+}
+
 void gen_odd(blob const data) {
   int i;
   gen_int(&i);
@@ -16,12 +22,6 @@ void gen_odd(blob const data) {
   }
 
   qc_return(int, i);
-}
-
-bool xors_self_to_false(blob const data) {
-  bool b = qc_args(bool, 0, bool);
-
-  return (b ^ b) == false;
 }
 
 bool is_odd(blob const data) {
