@@ -3,9 +3,9 @@
 # EXAMPLE
 
 ```
-$ make
-clang -O2 -Wall -Wextra -Wmost -Weverything -Wno-pointer-arith -o example example.c qc.c -lgc
-./example
+$ cmake . && make
+
+$ bin/example
 +++ OK, passed 100 tests.
 *** Failed!
 1200315752
@@ -20,7 +20,7 @@ clang -O2 -Wall -Wextra -Wmost -Weverything -Wno-pointer-arith -o example exampl
 T9^/NeP)Y^k/"-V$DSJ"U/.$vT<ih(|
 ```
 
-See [example.c](https://github.com/mcandre/qc/blob/master/example.c) for more information.
+See [example.c](https://github.com/mcandre/qc/blob/master/lib/example.c) for more information.
 
 # HOMEPAGE
 
@@ -32,11 +32,21 @@ FreeBSD
 
 # REQUIREMENTS
 
-* [clang](http://clang.llvm.org/), such as from [Xcode](https://developer.apple.com/xcode/)
+## Compiler Collection
 
-## Optional
+* [clang](http://clang.llvm.org/)
 
-* [Python](https://www.python.org/) 2+ (for infer)
+E.g. from Xcode
+
+* [gcc](https://gcc.gnu.org/)
+
+E.g. from Apt, Dnf, Homebrew, MinGW, Strawberry Perl
+
+## CMake
+
+* [cmake](https://cmake.org/)
+
+E.g. `brew install cmake`
 
 ## Ubuntu
 
@@ -57,6 +67,7 @@ Example: `brew install boehmgc`
 
 ## Optional
 
+* [Python](https://www.python.org/) 2+ (for infer)
 * [cppcheck](http://cppcheck.sourceforge.net/)
 * [splint](http://www.splint.org/)
 * [vera++](https://bitbucket.org/verateam/vera/wiki/Home)

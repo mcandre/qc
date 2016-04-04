@@ -1,5 +1,7 @@
-infer-out/
-# Created by https://www.gitignore.io/api/c,node,ruby
+bin/
+CTestTestfile.cmake
+Testing/
+# Created by https://www.gitignore.io/api/c,cmake,node,ruby
 
 ### C ###
 # Object files
@@ -36,6 +38,15 @@ infer-out/
 *.dSYM/
 
 
+### CMake ###
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+
 ### Node ###
 # Logs
 logs
@@ -62,9 +73,15 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directory
-# https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
+# Dependency directories
 node_modules
+jspm_packages
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
 
 
 ### Ruby ###
@@ -84,6 +101,17 @@ node_modules
 .dat*
 .repl_history
 build/
+*.bridgesupport
+build-iPhoneOS/
+build-iPhoneSimulator/
+
+## Specific to RubyMotion (use of CocoaPods):
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+#
+# vendor/Pods/
 
 ## Documentation cache and generated files:
 /.yardoc/
@@ -91,7 +119,7 @@ build/
 /doc/
 /rdoc/
 
-## Environment normalisation:
+## Environment normalization:
 /.bundle/
 /vendor/bundle
 /lib/bundler/man/
