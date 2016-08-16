@@ -1,3 +1,4 @@
+infer-out/
 bin/
 CTestTestfile.cmake
 Testing/
