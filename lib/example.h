@@ -1,3 +1,5 @@
+#pragma once
+
 // Copyright (C) YelloSoft
 
 #include "qc.h"

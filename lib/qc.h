@@ -1,5 +1,4 @@
-#ifndef QC
-#define QC
+#pragma once
 
 // Copyright (C)
 
@@ -43,4 +42,3 @@ bool _for_all(
 #define for_all(property, arglen, gs, ps, max_class) \
   (_for_all((prop) property, arglen, gs, ps, sizeof(max_class)))
 
-#endif
