@@ -9,74 +9,74 @@
 static bool QC_INITIALIZED = false;
 
 void qc_init(void) {
-  GC_INIT();
-  srand((unsigned int) time(NULL));
+    GC_INIT();
+    srand((unsigned int) time(NULL));
 
-  QC_INITIALIZED = true;
+    QC_INITIALIZED = true;
 }
 
 void gen_bool(/*@out@*/ blob const data) {
-  bool b = rand() % 2 == 0;
+    bool b = rand() % 2 == 0;
 
-  qc_return(bool, b);
+    qc_return(bool, b);
 }
 
 void gen_int(/*@out@*/ blob const data) {
-  int i = rand();
+    int i = rand();
 
-  qc_return(int, i);
+    qc_return(int, i);
 }
 
 void gen_char(/*@out@*/ blob const data) {
-  char c = (char)(rand() % 128);
+    char c = (char)(rand() % 128);
 
-  qc_return(char, c);
+    qc_return(char, c);
 }
 
 void _gen_array(/*@out@*/ blob const data, gen const g, size_t const size) {
-  int len = rand() % 100;
+    int len = rand() % 100;
 
-  blob arr = GC_MALLOC((size_t) len * size);
+    blob arr = GC_MALLOC((size_t) len * size);
 
-  size_t i;
+    size_t i;
 
-  for (i = 0; i < (size_t) len; i++) {
-    g(arr + i * size);
-  }
+    for (i = 0; i < (size_t) len; i++) {
+        g(arr + i * size);
+    }
 
-  qc_return(blob, arr);
+    qc_return(blob, arr);
 }
 
 void gen_string(/*@out@*/ blob const data) {
-  char *s;
+    char *s;
 
-  gen_array(&s, gen_char, char);
+    gen_array(&s, gen_char, char);
 
-  qc_return(char *, s);
+    qc_return(char *, s);
 }
 
 void print_bool(blob const data) {
-  bool b = qc_args(bool, 0, bool);
+    bool b = qc_args(bool, 0, bool);
 
-  printf("%s", b ? "true" : "false");
+    printf("%s", b ? "true" : "false");
 }
 
 void print_int(blob const data) {
-  int i = qc_args(int, 0, int);
+    int i = qc_args(int, 0, int);
 
-  printf("%d", i);
+    printf("%d", i);
 }
 
 void print_char(blob const data) {
-  char c = qc_args(char, 0, char);
+    char c = qc_args(char, 0, char);
 
-  printf("\'%c\'", c);
+    printf("\'%c\'", c);
 }
 
 void print_string(blob const data) {
-  char *s = qc_args(char *, 0, char *);
+    char *s = qc_args(char *, 0, char *);
 
-  printf("%s", s);
+    printf("%s", s);
 }
 
 // Syntax:
@@ -132,43 +132,43 @@ void print_string(blob const data) {
 // for_all(is_odd, 1, gs, ps, int);
 
 bool _for_all(
-  prop const property,
-  size_t const arglen,
-  gen const gs[],
-  print const ps[],
-  size_t const max_size
+    prop const property,
+    size_t const arglen,
+    gen const gs[],
+    print const ps[],
+    size_t const max_size
 ) {
-  size_t i, j;
-  blob values;
+    size_t i, j;
+    blob values;
 
-  // Because GC_MALLOC will segfault if GC_INIT() is not called beforehand.
-  if (!QC_INITIALIZED) {
-    printf("*** Error: Run qc_init() before calling for_all().\n");
-    return false;
-  }
-
-  values = GC_MALLOC(arglen * max_size);
-
-  for (i = 0; i < 100; i++) {
-    for (j = 0; j < arglen; j++) {
-      gs[j](values + j * max_size);
+    // Because GC_MALLOC will segfault if GC_INIT() is not called beforehand.
+    if (!QC_INITIALIZED) {
+        printf("*** Error: Run qc_init() before calling for_all().\n");
+        return false;
     }
 
-    bool holds = property(values);
+    values = GC_MALLOC(arglen * max_size);
 
-    if (!holds) {
-      printf("*** Failed!\n");
+    for (i = 0; i < 100; i++) {
+        for (j = 0; j < arglen; j++) {
+            gs[j](values + j * max_size);
+        }
 
-      for (j = 0; j < arglen; j++) {
-        ps[j](values + j * max_size);
-        printf("\n");
-      }
+        bool holds = property(values);
 
-      return false;
+        if (!holds) {
+            printf("*** Failed!\n");
+
+            for (j = 0; j < arglen; j++) {
+                ps[j](values + j * max_size);
+                printf("\n");
+            }
+
+            return false;
+        }
     }
-  }
 
-  printf("+++ OK, passed 100 tests.\n");
+    printf("+++ OK, passed 100 tests.\n");
 
-  return true;
+    return true;
 }

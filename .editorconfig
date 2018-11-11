@@ -1,55 +1,46 @@
-# ln -s .../.editorconfig ~/.editorconfig
-
-root = true
-
-# Default to Google Style
-# https://code.google.com/p/google-styleguide/
+# Most text files
 [*]
+charset = utf-8
+max_line_length = none
+trim_trailing_whitespace = true
 end_of_line = lf
 insert_final_newline = true
-charset = utf-8
-trim_trailing_whitespace = true
-max_line_length = 120
-spaces_around_operators = true
-spaces_around_brackets = false
 indent_style = space
-indent_size = 2
-indent_brace_style = K&R
-curly_bracket_next_line = false
-continuation_indent_size = 4
+indent_size = 4 # bash8
 
-# Make, Go
-[{Makefile*,*.mf,*.go}]
-indent_style = tab
-
-# F#
-[{*.fs,*.fsx}]
-indent_style = space
-
-# Markdown
-[{*.md,*.markdown}]
+# Machine-generated files
+[{*.scpt,*.plist,*.dot,*.db}]
+trim_trailing_whitespace = false
+insert_final_newline = none
 indent_size = none
 
-# PEP8
-[*.py]
-indent_size = 4
+# Freeform text
+[{*.txt,*.md,*.yaml,*.yml,*.emacs,*.el,*.lisp,*.lsp,*.scm,*.clj,*.rkt,*.ecl,*.sbcl,*.abcl,*.eclrc,*.sbclrc,*.cob,*.snusp}]
+indent_size = none
 
-# JavaScript
+# Placeholder files
+[{*.gitkeep,__init__.py}]
+insert_final_newline = none
+
+# Windows junk
+[{*.cmd,*.bat,*.reg,*.ps1,*.vbs,*.cs,*.fs,*.fsx,*.ahk}]
+end_of_line = crlf
+insert_final_newline = false
+
+# Lexer restrictions
+[{Makefile*,GNUmakefile*,*.mf,*.makefile,*.go,*.gitmodules}]
+indent_style = tab
+
+# Natural HTML nesting
 [*.js]
 quote_type = single
 
-# Lisp
-[{*.lisp,*.scm,*.rkt,*.lsp,*.clj,*.el,*.emacs}]
+# Compressed artifacts
+[{*.min.*,*-min.*}]
+insert_final_newline = false
+
+# Potential mixed indentations
+[*.patch]
+trim_trailing_whitespace = false
+indent_style = none
 indent_size = none
-
-# Pagragraph-oriented text
-[{*.txt,*.text,*.xml,*.*htm*,*.erb,*.tex,*.md,*.markdown,*.textile,*.ps,Makefile*,Rakefile*,*.mf,*.plist,*.bat,*.*sh,.*profile*,.editorconfig,.gitignore*,.*rc*,*.profile,*.epf,*.cfg}]
-max_line_length = none
-
-# Bashate
-[{*.sh,*.profile*,*.bash*}]
-indent_size = 4
-
-# Windows files
-[{*.cmd,*.bat,*reg,*.ps1,*.vbs,*.cs,*.csproj,*.fs,*.sln,*.xaml*,*.ahk}]
-end_of_line = crlf
